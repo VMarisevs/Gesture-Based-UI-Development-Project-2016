@@ -57,11 +57,12 @@ public class SpawnObject : MonoBehaviour {
         Vector3 position = spawnspot.transform.position;
 
         // randomly choose enemy
-        int enemy = Random.Range(0, enemyObjects.Count);
+        int enemy = Random.Range(0, enemyObjects.Count-1);
 
         // instaciate
         GameObject instance = Instantiate(enemyObjects[enemy], position, Quaternion.identity) as GameObject;
         instance.transform.SetParent(gameObject.transform);
+        
         //MoveEnemy mv = instance.GetComponentInChildren<MoveEnemy>();
         //mv.spawnArea = spawnspot;
     }

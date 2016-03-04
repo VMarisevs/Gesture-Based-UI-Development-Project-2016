@@ -5,7 +5,7 @@ public class EnemySpawnArea : MonoBehaviour {
 
     public bool busy = false;
 
-    void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag.Equals("Enemy"))
         {
@@ -13,7 +13,7 @@ public class EnemySpawnArea : MonoBehaviour {
         }
     }
 
-    void OnTriggerExit2D(Collider2D other)
+    void OnTriggerExit(Collider other)
     {
         if (other.gameObject.tag.Equals("Enemy"))
         {
