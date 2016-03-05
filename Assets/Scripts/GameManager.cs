@@ -28,17 +28,20 @@ public class GameManager : MonoBehaviour {
     }
 
     public void loseLife()
-    {
-        GameObject lastStar = life[life.Count - 1];
-        life.Remove(lastStar);
-        Destroy(lastStar);
+    {        
 
-        if (life.Count == 0)
+        if (life.Count > 0)
+        {
+            GameObject lastStar = life[life.Count - 1];
+            life.Remove(lastStar);
+            Destroy(lastStar);
+        }
+        else
         {
             print("Game over");
-            
+
             // Application.LoadLevel("GameOver"); depricated method
-            SceneManager.LoadScene(1);
+            //SceneManager.LoadScene(1);
         }
     }
 

@@ -42,7 +42,8 @@ public class SpawnObject : MonoBehaviour {
             }
 
             // pause before spawn another object
-            StartCoroutine(spawnWait(1f));
+            float randomDelay = Random.Range(1.5f, 3f);
+            StartCoroutine(spawnWait(randomDelay));
         }
     }
 
