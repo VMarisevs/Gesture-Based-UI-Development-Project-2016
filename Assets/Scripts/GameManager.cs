@@ -19,11 +19,9 @@ public class GameManager : MonoBehaviour {
 
     public void insertLife()
     {
-        Vector3 position = new Vector3((life.Count - 12), 0,-2);
-
+        Vector2 position = new Vector2(50 * (life.Count) + 50, 400);
         GameObject instance = Instantiate(star, position, Quaternion.identity) as GameObject;
         instance.transform.SetParent(gameObject.transform);
-        instance.transform.Rotate(new Vector3(300, 0, 0));
         life.Add(instance);
     }
 
