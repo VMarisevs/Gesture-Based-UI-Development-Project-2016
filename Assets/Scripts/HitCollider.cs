@@ -4,6 +4,7 @@ using System.Collections;
 public class HitCollider : MonoBehaviour {
 
     public GameObject gamemanager;
+    public GameObject explosion;
     bool _triggered;
 
     void OnTriggerEnter(Collider other)
@@ -17,8 +18,15 @@ public class HitCollider : MonoBehaviour {
         if (other.gameObject.tag.Equals("Enemy"))
         {
             //print("Hit");
-            // Destroy(other.gameObject);
+            Destroy(other.gameObject);
+
+            if (explosion != null)
+            {
+                Instantiate(explosion, transform.position, transform.rotation);
+            }
+
             GameManager gm = gamemanager.GetComponent<GameManager>();
+            
             gm.loseLife();
         }
     }
