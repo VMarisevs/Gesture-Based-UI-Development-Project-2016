@@ -27,6 +27,7 @@ public class HitColliderDef : MonoBehaviour {
 
             GameManager gm = gamemanager.GetComponent<GameManager>();
             // add score
+            gm.updateScore(100);
             
         }
     }

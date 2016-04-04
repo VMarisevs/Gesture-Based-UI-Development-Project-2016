@@ -2,10 +2,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
     public GameObject star;
+
+    public float timeLeft = 30.0f;
+    public float score = 0;
+
+    public Text txtTimer;
+    public Text txtScore;
 
     public List<GameObject> life = new List<GameObject>();
 
@@ -14,6 +21,28 @@ public class GameManager : MonoBehaviour {
         for (int i=0; i<5; i++)
         {
             insertLife();
+        }
+
+        updateScore(0);
+
+        InvokeRepeating("updateTimer", 1.0f, 1.0f);
+    }
+
+
+    private void updateTimer()
+    {
+        timeLeft --;
+        txtTimer.text = "Time remaining: " + timeLeft;
+    }
+
+    public void updateScore(int addscore)
+    {
+        score += addscore;
+        txtScore.text = "Score: " + score;
+
+        if (addscore != 0)
+        {
+            timeLeft += 3;
         }
     }
 
