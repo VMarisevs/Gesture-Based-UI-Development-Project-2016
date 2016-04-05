@@ -4,9 +4,11 @@ using System.Collections;
 public class PipesMove : MonoBehaviour {
 
     public Vector3 velocity;
+    public BirdGravity birdgravity;
 
     
     void FixedUpdate() {
-        transform.position += velocity * Time.deltaTime;
+        if (!birdgravity.dead)
+            transform.position += velocity * Time.deltaTime;
     }
 }
