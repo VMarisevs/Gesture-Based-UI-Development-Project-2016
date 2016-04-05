@@ -10,6 +10,8 @@ public class GameScore : MonoBehaviour {
 
     public bool gameover = false;
 
+    public GameObject txtGameover;
+
     public void addScore()
     {
         score += 1;
@@ -24,5 +26,6 @@ public class GameScore : MonoBehaviour {
         {
             pipe.GetComponent<PipesMove>().gameover = true;
         }
+        txtGameover.SetActive(true);
     }
 }

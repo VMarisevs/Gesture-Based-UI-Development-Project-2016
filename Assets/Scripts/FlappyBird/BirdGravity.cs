@@ -43,15 +43,20 @@ public class BirdGravity : MonoBehaviour {
 
         velocity = Vector3.ClampMagnitude(velocity, maxSpeed);
 
-        if (transform.position.y > 3.5f)
+        if (transform.position.y > 3.0f)
             transform.position += velocity * Time.deltaTime;
+        else
+            Die();
 	}
 
     public void Die()
     {
-        dead = true;
-        score.setGameOver();
-        sounds.playDie();
+        if (!dead)
+        {
+            dead = true;
+            score.setGameOver();
+            sounds.playDie();
+        }
     }
 
     public bool isDead()
