@@ -19,6 +19,14 @@ public class BirdGravity : MonoBehaviour {
 
     public bool dead = false;
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            MakeAFlap();
+        }
+    }
+
 	void FixedUpdate () {
         if (dead)
             return;

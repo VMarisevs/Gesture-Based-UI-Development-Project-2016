@@ -12,7 +12,7 @@ public class GameNotifications : MonoBehaviour {
     private Color colorgreen;
     private Color colororange;
 
-    public float flaptimer = 1.5f;
+    private float flaptimer = 1.5f;
 
     void Start()
     {
