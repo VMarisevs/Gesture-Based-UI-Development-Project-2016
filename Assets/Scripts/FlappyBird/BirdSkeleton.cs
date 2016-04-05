@@ -4,6 +4,15 @@ using System;
 
 public class BirdSkeleton : MonoBehaviour {
 
+
+    private int flapcounter = 0;
+    private bool handsup = false;
+    private bool handsdown = true;
+
+    /*
+
+
+    */
     public Transform Head;
     public Transform Neck;
     public Transform Torso;
@@ -179,18 +188,24 @@ public class BirdSkeleton : MonoBehaviour {
         if (UpdateOrientation)
         {
             Quaternion newRotation = transform.rotation * orientation * initialRotations[(int)joint];
+
             if (mirror)
             {
                 newRotation.y = -newRotation.y;
                 newRotation.z = -newRotation.z;
             }
             transforms[(int)joint].rotation = Quaternion.Slerp(transforms[(int)joint].rotation, newRotation, Time.deltaTime * RotationDamping);
+
+            trackAnArm();
         }
     }
+
+
     Vector3 doMirror(Vector3 vec)
     {
         return new Vector3(mirror ? -vec.x : vec.x, vec.y, vec.z);
     }
+
     void UpdatePosition(ZigJointId joint, Vector3 position)
     {
         joint = mirror ? mirrorJoint(joint) : joint;
@@ -251,4 +266,37 @@ public class BirdSkeleton : MonoBehaviour {
         }
     }
 
+
+
+    private void trackAnArm()
+    {
+
+        if ((transforms[(int)ZigJointId.LeftHand].transform.localPosition.y > transforms[(int)ZigJointId.LeftShoulder].transform.localPosition.y)
+            &&
+            (transforms[(int)ZigJointId.RightHand].transform.localPosition.y > transforms[(int)ZigJointId.RightShoulder].transform.localPosition.y)
+            && !handsup
+            )
+        {
+            handsup = true;
+            print("both hands are up");
+        } else if ((transforms[(int)ZigJointId.LeftHand].transform.localPosition.y < transforms[(int)ZigJointId.LeftShoulder].transform.localPosition.y)
+            &&
+            (transforms[(int)ZigJointId.RightHand].transform.localPosition.y < transforms[(int)ZigJointId.RightShoulder].transform.localPosition.y)
+            && handsup)
+        {
+            handsup = false;
+            flapcounter++;
+            print("we made a flap: " + flapcounter);
+        }
+
+        /*
+        if (joint == (int)ZigJointId.LeftHand)
+        {
+            print("wohoo left arm present");
+        }
+        if (joint == (int)ZigJointId.RightHand)
+        {
+            print("wohoo right arm present");
+        }*/
+    }
 }
