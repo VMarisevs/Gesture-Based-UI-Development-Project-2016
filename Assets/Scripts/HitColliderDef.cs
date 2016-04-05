@@ -9,12 +9,13 @@ public class HitColliderDef : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
+        /*
         if (_triggered)
         {
             return;
         }
         _triggered = true;
-
+        */
         if (other.gameObject.tag.Equals("Enemy"))
         {
             //print("Hit");
@@ -22,7 +23,7 @@ public class HitColliderDef : MonoBehaviour {
 
             if (explosion != null)
             {
-                Instantiate(explosion, transform.position, transform.rotation);
+                Instantiate(explosion, transform.position, transform.rotation);                
             }
 
             GameManager gm = gamemanager.GetComponent<GameManager>();
@@ -32,6 +33,7 @@ public class HitColliderDef : MonoBehaviour {
         }
     }
 
+    /*
     void OnTriggerExit(Collider hit)
     {
         if (!_triggered)
@@ -41,4 +43,5 @@ public class HitColliderDef : MonoBehaviour {
         _triggered = false;
         //print("exit");
     }
+    */
 }

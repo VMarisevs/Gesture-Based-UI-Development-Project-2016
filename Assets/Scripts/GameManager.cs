@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour {
     {
         score += addscore;
         txtScore.text = "Score: " + score;
-
+        
         if (addscore != 0)
         {
             timeLeft += 3;
