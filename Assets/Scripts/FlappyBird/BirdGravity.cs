@@ -17,7 +17,9 @@ public class BirdGravity : MonoBehaviour {
 
     private bool flap = false;
 
-    public bool dead = false;
+    private bool dead = false;
+
+    public Sounds sounds;
 
     void Update()
     {
@@ -28,11 +30,10 @@ public class BirdGravity : MonoBehaviour {
     }
 
 	void FixedUpdate () {
-        if (dead)
-            return;
+
         velocity += gravity * Time.deltaTime;
 
-        if (flap)
+        if (flap && !dead)
         {
             flap = false;
             velocity += flapVelocity;
@@ -40,12 +41,29 @@ public class BirdGravity : MonoBehaviour {
 
         velocity = Vector3.ClampMagnitude(velocity, maxSpeed);
 
-        transform.position += velocity * Time.deltaTime;
+        if (transform.position.y > 3.5f)
+            transform.position += velocity * Time.deltaTime;
 	}
+
+    public void Die()
+    {
+        dead = true;
+        sounds.playDie();
+    }
+
+    public bool isDead()
+    {
+        return dead;
+    }
 
     public void MakeAFlap()
     {
-        flap = true;   
+        if (!dead)
+        {
+            flap = true;
+            sounds.playFlap();
+        }
+        
     }
 
     

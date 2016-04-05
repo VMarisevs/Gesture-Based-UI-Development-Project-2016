@@ -17,7 +17,7 @@ public class SpawnPipes : MonoBehaviour {
     {
         time -= 0.1f;
 
-        if (time < 0 && !birdgravity.dead)
+        if (time < 0 && !birdgravity.isDead())
         {
 
             Vector3 position = new Vector3(0, Random.Range(0f, 20f),100);

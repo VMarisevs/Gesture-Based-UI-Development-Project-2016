@@ -12,6 +12,6 @@ public class BirdHitPipe : MonoBehaviour {
     */
     void OnTriggerEnter(Collider other)
     {
-        birdGravity.dead = true;
+        birdGravity.Die();
     }
 }
