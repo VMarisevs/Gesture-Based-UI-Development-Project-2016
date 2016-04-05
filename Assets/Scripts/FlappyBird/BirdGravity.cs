@@ -13,6 +13,7 @@ public class BirdGravity : MonoBehaviour {
 
     public Vector3 gravity;
     public Vector3 flapVelocity;
+    public float maxSpeed = 5f;
 
     private bool flap = false;
 
@@ -24,6 +25,8 @@ public class BirdGravity : MonoBehaviour {
             flap = false;
             velocity += flapVelocity;
         }
+
+        velocity = Vector3.ClampMagnitude(velocity, maxSpeed);
 
         transform.position += velocity * Time.deltaTime;
 	}
