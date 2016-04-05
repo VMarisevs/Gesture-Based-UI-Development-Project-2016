@@ -280,7 +280,7 @@ public class BirdSkeleton : MonoBehaviour {
             )
         {
             handsup = true;
-            print("both hands are up");
+          //  print("both hands are up");
         } else if ((transforms[(int)ZigJointId.LeftHand].transform.localPosition.y < transforms[(int)ZigJointId.LeftShoulder].transform.localPosition.y)
             &&
             (transforms[(int)ZigJointId.RightHand].transform.localPosition.y < transforms[(int)ZigJointId.RightShoulder].transform.localPosition.y)
@@ -289,7 +289,7 @@ public class BirdSkeleton : MonoBehaviour {
             handsup = false;
             birdGravity.MakeAFlap();
             flapcounter++;
-            print("we made a flap: " + flapcounter);
+          //  print("we made a flap: " + flapcounter);
         }
 
         /*

@@ -17,7 +17,11 @@ public class BirdGravity : MonoBehaviour {
 
     private bool flap = false;
 
+    public bool dead = false;
+
 	void FixedUpdate () {
+        if (dead)
+            return;
         velocity += gravity * Time.deltaTime;
 
         if (flap)
@@ -35,4 +39,6 @@ public class BirdGravity : MonoBehaviour {
     {
         flap = true;   
     }
+
+    
 }
