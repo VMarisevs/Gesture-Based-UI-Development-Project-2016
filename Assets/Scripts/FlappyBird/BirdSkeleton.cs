@@ -9,6 +9,8 @@ public class BirdSkeleton : MonoBehaviour {
     private bool handsup = false;
     private bool handsdown = true;
 
+    public BirdGravity birdGravity;
+
     /*
 
 
@@ -285,6 +287,7 @@ public class BirdSkeleton : MonoBehaviour {
             && handsup)
         {
             handsup = false;
+            birdGravity.MakeAFlap();
             flapcounter++;
             print("we made a flap: " + flapcounter);
         }
