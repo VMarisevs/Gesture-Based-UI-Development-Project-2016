@@ -21,6 +21,8 @@ public class BirdGravity : MonoBehaviour {
 
     public Sounds sounds;
 
+    public GameScore score;
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -48,6 +50,7 @@ public class BirdGravity : MonoBehaviour {
     public void Die()
     {
         dead = true;
+        score.setGameOver();
         sounds.playDie();
     }
 

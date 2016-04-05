@@ -8,9 +8,21 @@ public class GameScore : MonoBehaviour {
 
     public Text gameScore;
 
+    public bool gameover = false;
+
     public void addScore()
     {
         score += 1;
         gameScore.text = score.ToString();
+    }
+
+    public void setGameOver()
+    {
+        GameObject[] pipes = GameObject.FindGameObjectsWithTag("pipe");
+
+        foreach (GameObject pipe in pipes)
+        {
+            pipe.GetComponent<PipesMove>().gameover = true;
+        }
     }
 }
