@@ -12,7 +12,7 @@ public class BirdHitPipe : MonoBehaviour {
     */
     void OnTriggerEnter(Collider other)
     {
-        print(other.name);
+        //print(other.name);
         birdGravity.Die();
     }
 }
