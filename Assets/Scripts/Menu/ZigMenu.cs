@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ZigMenu : MonoBehaviour
 {
@@ -58,6 +59,7 @@ public class ZigMenu : MonoBehaviour
     private Transform[] transforms;
     private Quaternion[] initialRotations;
     private Vector3 rootPosition;
+
 
     ZigJointId mirrorJoint(ZigJointId joint)
     {
@@ -321,6 +323,13 @@ public class ZigMenu : MonoBehaviour
                 // fire selected button
                 print("fire selected button");
 
+                switch (selected)
+                {
+                    case 0:
+                        startNewGame();
+                        break;
+                }
+
                 // restarting the timer
                 
 
@@ -328,7 +337,10 @@ public class ZigMenu : MonoBehaviour
                 selecttimer = TIME_TO_SELECT;
             }
         }
+    }
 
-        
+    private void startNewGame()
+    {
+        SceneManager.LoadScene("FlappyBird", LoadSceneMode.Single);
     }
 }
