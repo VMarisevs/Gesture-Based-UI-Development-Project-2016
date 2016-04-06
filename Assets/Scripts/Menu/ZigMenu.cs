@@ -17,6 +17,8 @@ public class ZigMenu : MonoBehaviour
     private float selecttimer = TIME_TO_SELECT;
     private float selectedtimercomparator = -1;
 
+    private bool prepareLeftSwipe = false;
+
     /*
     */
     public Transform Head;
@@ -202,7 +204,10 @@ public class ZigMenu : MonoBehaviour
             }
            // transforms[(int)joint].rotation = Quaternion.Slerp(transforms[(int)joint].rotation, newRotation, Time.deltaTime * RotationDamping);
 
-            trackGestures();
+            if (menuCanvas[0].active)
+                trackGestures();
+            else
+                swipeGesture();
         }
     }
     Vector3 doMirror(Vector3 vec)
@@ -410,18 +415,44 @@ public class ZigMenu : MonoBehaviour
         menuCanvas[id].SetActive(true);
     }
 
-    public void _openMainTab()
+    private void _openMainTab()
     {
         changeMenu(0);
     }
 
-    public void _openScoresTab()
+    private void _openScoresTab()
     {
         changeMenu(1);
     }
 
-    public void _openOptionsTab()
+    private void _openOptionsTab()
     {
         changeMenu(2);
     }
+
+
+    /*
+    Track for a left hand swipe
+    */
+
+    private void swipeGesture()
+    {
+        float xpos = transforms[(int)ZigJointId.LeftHand].transform.localPosition.x;
+
+        //print("Left hand x pos" + xpos);
+
+        if (xpos < -0.2 && !prepareLeftSwipe)
+        {
+            prepareLeftSwipe = true;
+
+        } else if ( xpos > 0.1 && prepareLeftSwipe)
+        {
+            print("fire back event");
+            _openMainTab();
+            prepareLeftSwipe = false;
+        }
+
+    }
+
+
 }
