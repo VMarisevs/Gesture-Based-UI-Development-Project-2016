@@ -415,7 +415,7 @@ public class ZigMenu : MonoBehaviour
         menuCanvas[id].SetActive(true);
     }
 
-    private void _openMainTab()
+    public void _openMainTab()
     {
         changeMenu(0);
     }

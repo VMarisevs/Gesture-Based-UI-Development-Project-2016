@@ -35,6 +35,7 @@ public class GameScore : MonoBehaviour {
         }
         txtGameover.SetActive(true);
 
+        savehighscore();
         InvokeRepeating("backtomainmenu", 0.1f, 0.1f);
     }
 
@@ -50,4 +51,12 @@ public class GameScore : MonoBehaviour {
         }
     }
 
+    private void savehighscore()
+    {
+        if (PlayerPrefs.GetFloat("HiScore") < score)
+        {
+            PlayerPrefs.SetFloat("HiScore", score);
+        }
+        
+    }
 }
