@@ -8,6 +8,8 @@ using UnityEngine.SceneManagement;
 public class ZigMenu : MonoBehaviour
 {
 
+    public GameObject[] menuCanvas;
+
     private static float TIME_TO_SELECT = 1.5F;
     public Button[] buttons;
 
@@ -270,22 +272,39 @@ public class ZigMenu : MonoBehaviour
 
     private void trackGestures()
     {
-        //print("Right hand y position: " + transforms[(int)ZigJointId.RightHand].transform.localPosition.y);
+       // print("Right hand y position: " + transforms[(int)ZigJointId.RightHand].transform.localPosition.y);
         float ypos = transforms[(int)ZigJointId.RightHand].transform.localPosition.y;
-
-        /*
-        // if they are not equals, state changed, reset checker timer
-        if (selected != selectedtimercomparator)
-        {
-            //print("cancel checker");
-            CancelInvoke("checker");
-            selecttimer = TIME_TO_SELECT;
-        }*/
-
         
-        if (ypos < 0.1 && ypos > -0.1)
+        if (ypos < 0.4 && ypos > 0.3)
         {
             selected = 0;
+            buttons[selected].Select();
+            //print("selected: " + selected + " old selected: " + selectedtimercomparator);
+
+            if (selected != selectedtimercomparator)
+            {
+                //print("fire new timer");
+                selectedtimercomparator = selected;
+                selecttimer = TIME_TO_SELECT;
+                InvokeRepeating("checker", 0.1f, 0.1f);
+            }
+        } else if (ypos < 0.15 && ypos > 0.05)
+        {
+            selected = 1;
+            buttons[selected].Select();
+            //print("selected: " + selected + " old selected: " + selectedtimercomparator);
+
+            if (selected != selectedtimercomparator)
+            {
+                //print("fire new timer");
+                selectedtimercomparator = selected;
+                selecttimer = TIME_TO_SELECT;
+                InvokeRepeating("checker", 0.1f, 0.1f);
+            }
+        }
+        else if (ypos < -0.1 && ypos > -0.2)
+        {
+            selected = 2;
             buttons[selected].Select();
             //print("selected: " + selected + " old selected: " + selectedtimercomparator);
 
@@ -297,7 +316,21 @@ public class ZigMenu : MonoBehaviour
                 InvokeRepeating("checker", 0.1f, 0.1f);
             }
         }
-           
+        else if (ypos < -0.35 && ypos > -0.45)
+        {
+            selected = 3;
+            buttons[selected].Select();
+            //print("selected: " + selected + " old selected: " + selectedtimercomparator);
+
+            if (selected != selectedtimercomparator)
+            {
+                print("fire new timer");
+                selectedtimercomparator = selected;
+                selecttimer = TIME_TO_SELECT;
+                InvokeRepeating("checker", 0.1f, 0.1f);
+            }
+        }
+
         else
         {
             GameObject myEventSystem = GameObject.Find("EventSystem");
@@ -326,7 +359,16 @@ public class ZigMenu : MonoBehaviour
                 switch (selected)
                 {
                     case 0:
-                        startNewGame();
+                        fireNewGame();
+                        break;
+                    case 1:
+                        _openOptionsTab();
+                        break;
+                    case 2:
+                        _openScoresTab();
+                        break;
+                    case 3:
+                        fireExit();
                         break;
                 }
 
@@ -339,8 +381,47 @@ public class ZigMenu : MonoBehaviour
         }
     }
 
-    private void startNewGame()
+    /*
+    button on click events
+    */
+
+    private void fireNewGame()
     {
         SceneManager.LoadScene("FlappyBird", LoadSceneMode.Single);
+    }
+
+    private void fireExit()
+    {
+        print("exit");
+        Application.Quit();
+    }
+
+    /*
+    menu switch
+    */
+
+    private void changeMenu(int id)
+    {
+        for (int i = 0; i < menuCanvas.Length; i++)
+        {
+            menuCanvas[i].SetActive(false);
+        }
+
+        menuCanvas[id].SetActive(true);
+    }
+
+    public void _openMainTab()
+    {
+        changeMenu(0);
+    }
+
+    public void _openScoresTab()
+    {
+        changeMenu(1);
+    }
+
+    public void _openOptionsTab()
+    {
+        changeMenu(2);
     }
 }
