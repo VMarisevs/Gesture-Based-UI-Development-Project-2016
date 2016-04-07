@@ -43,7 +43,7 @@ public class BirdGravity : MonoBehaviour {
 
         velocity = Vector3.ClampMagnitude(velocity, maxSpeed);
 
-        if (transform.position.y > 3.0f)
+        if (transform.position.y > 3.0f && transform.position.y < 75.0f)
             transform.position += velocity * Time.deltaTime;
         else
             Die();
