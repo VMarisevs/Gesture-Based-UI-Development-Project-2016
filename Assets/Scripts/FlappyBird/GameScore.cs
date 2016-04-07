@@ -19,6 +19,11 @@ public class GameScore : MonoBehaviour {
         gameScore.text = score.ToString();
     }
 
+    public int getScore()
+    {
+        return score;
+    }
+
     public void setGameOver()
     {
         try { 
