@@ -8,6 +8,8 @@
 ## Unity3d + Kinect v1  (Flappy Bird 3D or Space Walk)
 ![img](http://www.webondevices.com/wp-content/uploads/2015/09/kinect_v1.jpg)
 
+[![5 min project video](http://img.youtube.com/vi/AnAxLrv_4z0/0.jpg)](https://youtu.be/AnAxLrv_4z0)
+
 ### How to run
 #### Online Kinect game
 
@@ -27,6 +29,14 @@ To run this project you need:
 Simply open this project using *Unity*.
 
 ### How to play
+Project
+
+#### Space walk
+In this game player should kick asteroids with hands and legs to get points and survival time.
+
+#### Flappy Bird 3d
+This is a clone of a Flappy Bird game where player should flap his hands to fly and avoid collisions with other objects.
+
 #### Menu
 
 Menu keeps a track of users right hand and if he holds more that 1.5 sec on the button, then it will be clicked. To come back from options or high score tab use left hand to swipe from left to right.
