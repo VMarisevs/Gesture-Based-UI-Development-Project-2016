@@ -8,6 +8,7 @@
 ## Unity3d + Kinect v1  (Flappy Bird 3D or Space Walk)
 ![img](http://www.webondevices.com/wp-content/uploads/2015/09/kinect_v1.jpg)
 
+### [5 min project video](https://youtu.be/AnAxLrv_4z0)
 [![5 min project video](http://img.youtube.com/vi/AnAxLrv_4z0/0.jpg)](https://youtu.be/AnAxLrv_4z0)
 
 ### How to run
